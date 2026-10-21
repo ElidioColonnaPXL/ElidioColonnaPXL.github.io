@@ -1,0 +1,52 @@
+---
+layout: default
+description: "A personal blue-team blog about investigating incidents, understanding attacker behaviour, and building better detections."
+---
+<section class="intro" aria-labelledby="intro-title">
+  <p class="command" aria-hidden="true"><span class="prompt">~ $</span> cat README.md</p>
+  <p class="eyebrow">A blue-team field notebook</p>
+  <h1 id="intro-title">Investigate.<br>Understand.<br><span class="accent">Detect.</span></h1>
+  <p class="intro-copy">Welcome to the guarded kernel. A place for my notes on incident analysis, detection principles, and APT research — and what I learn along the way.</p>
+  <a class="text-link" href="{{ '/about/' | relative_url }}">About the author <span aria-hidden="true">→</span></a>
+</section>
+
+<section class="articles-section" aria-labelledby="articles-title">
+  <div class="section-heading">
+    <div>
+      <p class="command" aria-hidden="true"><span class="prompt">~ $</span> ls ./articles</p>
+      <h2 id="articles-title">Latest articles</h2>
+    </div>
+    <span class="count">{{ site.posts | size }} published</span>
+  </div>
+  {% if site.posts.size > 0 %}
+  <ol class="post-list">
+    {% for post in site.posts %}
+    <li class="post-item">
+      <div class="post-meta">
+        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%d %b %Y" }}</time>
+        {% if post.category %}<span>{{ post.category | escape }}</span>{% endif %}
+      </div>
+      <h3><a href="{{ post.url | relative_url }}">{{ post.title | escape }} <span aria-hidden="true">↗</span></a></h3>
+      {% if post.description %}<p>{{ post.description | escape }}</p>{% else %}<div class="post-excerpt">{{ post.excerpt }}</div>{% endif %}
+    </li>
+    {% endfor %}
+  </ol>
+  {% else %}
+  <div class="empty-state">
+    <span class="empty-marker" aria-hidden="true">[ ]</span>
+    <div>
+      <h3>No articles published yet.</h3>
+      <p>This notebook starts here. Future entries will cover incidents, detection ideas, and the people and techniques behind attacks.</p>
+    </div>
+  </div>
+  {% endif %}
+</section>
+
+<section class="topics-section" aria-labelledby="topics-title">
+  <h2 id="topics-title" class="small-heading">What this blog covers</h2>
+  <dl class="topic-list">
+    <div><dt><span aria-hidden="true">01 /</span> Incident analysis</dt><dd>Following the evidence, reconstructing events, and learning from the investigation.</dd></div>
+    <div><dt><span aria-hidden="true">02 /</span> Detection principles</dt><dd>Understanding behaviour, choosing useful telemetry, and turning ideas into detections.</dd></div>
+    <div><dt><span aria-hidden="true">03 /</span> APT research</dt><dd>Studying threat groups, their techniques, and what defenders can look for.</dd></div>
+  </dl>
+</section>

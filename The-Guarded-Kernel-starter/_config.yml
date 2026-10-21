@@ -1,0 +1,30 @@
+title: "the guarded kernel"
+description: "Notes on blue teaming: incident analysis, detection principles, and APT research."
+url: "https://elidiocolonnapxl.github.io"
+baseurl: ""
+lang: en
+timezone: Europe/Brussels
+author: "Elidio Colonna"
+github_username: "ElidioColonnaPXL"
+logo: "/assets/images/theguardedkernellogo.png"
+
+markdown: kramdown
+highlighter: rouge
+permalink: /articles/:title/
+future: false
+show_drafts: false
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - node_modules
+  - scripts
