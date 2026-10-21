@@ -1,9 +1,0 @@
----
-layout: default
----
-<section class="page-header">
-  <p class="command" aria-hidden="true"><span class="prompt">~ $</span> {{ page.command | default: "cat page.md" | escape }}</p>
-  <h1>{{ page.title | escape }}</h1>
-  {% if page.subtitle %}<p class="page-subtitle">{{ page.subtitle | escape }}</p>{% endif %}
-</section>
-<div class="prose">{{ content }}</div>
