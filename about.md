@@ -1,13 +1,14 @@
 ---
 layout: page
 title: "About me"
+seo_title: "Elidio Colonna · The Guarded Kernel"
 permalink: /about/
 command: "cat about.md"
 subtitle: "The person behind the guarded kernel."
-description: "About Elidio and The Guarded Kernel, a personal blog about blue teaming, incident analysis, detection, and APT research."
+description: "About Elidio Colonna and The Guarded Kernel, a personal blog about blue teaming, incident analysis, detection, and APT research."
 ---
 
-I'm Elidio, a Cloud & Security student in Belgium with a particular interest in blue teaming.
+I'm Elidio Colonna, a Cloud & Security student in Belgium with a particular interest in blue teaming.
 
 I enjoy working through logs, understanding how an attack happened, and thinking about how to detect it. This blog is where I share what I learn through study, labs, and research.
 
