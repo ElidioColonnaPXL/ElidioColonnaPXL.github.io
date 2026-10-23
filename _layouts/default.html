@@ -1,41 +1,30 @@
+---
+---
+{% comment %}
+  Minimal Mistakes 4.28.1 base layout. The masthead cache includes page.url
+  because this site's navigation marks the current page with aria-current.
+{% endcomment %}
+{%- assign locale = page.locale | default: layout.locale | default: site.locale %}
 <!doctype html>
-<html lang="{{ site.lang | default: 'en' }}">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="dark">
-  <meta name="theme-color" content="#0c100e">
-  <title>{% if page.seo_title %}{{ page.seo_title | escape }}{% else %}{% if page.title %}{{ page.title | escape }} · {% endif %}{{ site.title | escape }}{% endif %}</title>
-  <meta name="description" content="{{ page.description | default: site.description | escape }}">
-  <link rel="canonical" href="{{ page.url | absolute_url }}">
-  <link rel="icon" type="image/png" sizes="96x96" href="{{ '/assets/favicon.png' | relative_url }}">
-  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-</head>
-<body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <div class="site-shell">
-    <header class="site-header">
-      <a class="brand" href="{{ '/' | relative_url }}" aria-label="The Guarded Kernel — home">
-        {% assign logo_file = site.static_files | where: "path", site.logo | first %}
-        {% if logo_file %}
-        <img class="brand-logo" src="{{ site.logo | relative_url }}" width="2048" height="279" alt="the guarded kernel">
-        {% else %}
-        <span class="brand-prompt" aria-hidden="true">&gt;_</span>
-        <span class="brand-name">the guarded kernel</span>
-        {% endif %}
-      </a>
-      <nav class="site-nav" aria-label="Main navigation">
-        <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}><span aria-hidden="true">~/</span>home</a>
-        <a href="{{ '/about/' | relative_url }}"{% if page.url == '/about/' %} aria-current="page"{% endif %}><span aria-hidden="true">~/</span>about</a>
-      </nav>
-    </header>
-    <main id="main" tabindex="-1">
+{% include copyright.html %}
+<html lang="{{ locale | replace: '_', '-' | default: 'en' }}" class="no-js" dir="{{ page.direction | default: layout.direction | default: site.direction | default: 'ltr' }}">
+  <head>
+    {% include head.html locale=locale %}
+    {% include head/custom.html %}
+  </head>
+  <body class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %}">
+    {% include_cached skip-links.html locale=locale %}
+    {% include_cached masthead.html locale=locale active_url=page.url %}
+    <div class="initial-content">
       {{ content }}
-    </main>
-    <footer class="site-footer">
-      <p><span class="footer-prompt" aria-hidden="true">&gt;_</span> {{ site.title | escape }} <span class="copyright">© {{ site.time | date: '%Y' }}</span></p>
-      <a href="https://github.com/{{ site.github_username }}">GitHub <span aria-hidden="true">↗</span></a>
-    </footer>
-  </div>
-</body>
+      {% include after-content.html %}
+    </div>
+    <div id="footer" class="page__footer">
+      <footer>
+        {% include footer/custom.html %}
+        {% include_cached footer.html locale=locale %}
+      </footer>
+    </div>
+    {% include scripts.html locale=locale %}
+  </body>
 </html>

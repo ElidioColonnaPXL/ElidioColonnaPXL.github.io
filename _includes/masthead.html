@@ -1,0 +1,11 @@
+<header class="masthead tgk-masthead">
+  <div class="tgk-shell site-header">
+    <a class="brand" href="{{ '/' | relative_url }}" aria-label="The Guarded Kernel — home">
+      <img class="brand-logo" src="{{ site.logo | relative_url }}" width="2172" height="724" alt="the guarded kernel">
+    </a>
+    <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+      <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}><span aria-hidden="true">~/</span>home</a>
+      <a href="{{ '/about/' | relative_url }}"{% if page.url == '/about/' %} aria-current="page"{% endif %}><span aria-hidden="true">~/</span>about</a>
+    </nav>
+  </div>
+</header>

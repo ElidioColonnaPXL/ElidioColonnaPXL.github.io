@@ -1,4 +1,7 @@
 title: "the guarded kernel"
+remote_theme: "mmistakes/minimal-mistakes@4.28.1"
+minimal_mistakes_skin: "mint"
+locale: "en-GB"
 description: "Notes on blue teaming: incident analysis, detection principles, and APT research."
 url: "https://theguardedkernel.be"
 baseurl: ""
@@ -14,6 +17,16 @@ permalink: /articles/:title/
 future: false
 show_drafts: false
 
+plugins:
+  - jekyll-remote-theme
+  - jekyll-include-cache
+  - jekyll-sitemap
+  - jekyll-feed
+
+search: false
+atom_feed:
+  hide: true
+
 defaults:
   - scope:
       path: ""
@@ -28,3 +41,4 @@ exclude:
   - vendor
   - node_modules
   - scripts
+  - PREVIEW.md

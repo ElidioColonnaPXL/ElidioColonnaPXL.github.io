@@ -1,0 +1,37 @@
+---
+---
+@charset "utf-8";
+
+// Minimal Mistakes, with a restrained light palette for The Guarded Kernel.
+$background-color: #f5f7f4;
+$text-color: #25352c;
+$muted-text-color: #56655b;
+$primary-color: #277145;
+$link-color: #277145;
+$link-color-hover: #174d2e;
+$border-color: #d3ddd2;
+$footer-background-color: #edf2eb;
+$code-background-color: #eaf0e7;
+$max-width: 1120px;
+$global-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$header-font-family: $global-font-family;
+$base00: #eaf0e7;
+$base01: #dfe7dc;
+$base02: #c2cfbd;
+$base03: #62745c;
+$base04: #56655b;
+$base05: #25352c;
+$base06: #17291d;
+$base07: #102015;
+$base08: #9a382e;
+$base09: #85500e;
+$base0a: #81611c;
+$base0b: #286630;
+$base0c: #116b69;
+$base0d: #235f89;
+$base0e: #77408c;
+$base0f: #963b56;
+
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'mint' }}";
+@import "minimal-mistakes";
+@import "guarded-kernel";
