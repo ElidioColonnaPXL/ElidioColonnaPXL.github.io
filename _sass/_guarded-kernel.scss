@@ -103,6 +103,19 @@ pre code { font-size: 1em; }
 .post-header h1 { font-size: clamp(2.3rem, 4vw, 3.4rem); }
 .post-end { padding-bottom: 3rem; }
 
+/* Article illustrations and optional post emblems. */
+.post-item--with-thumbnail { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 1.4rem; align-items: start; }
+.post-thumbnail { display: block; width: 96px; line-height: 0; }
+.post-thumbnail img { display: block; width: 96px; height: auto; max-width: 100%; }
+.post-item-body, .post-heading-body { min-width: 0; }
+.post-heading--with-thumbnail { display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: 1.5rem; align-items: start; }
+.post-emblem { display: block; width: 104px; height: auto; max-width: 100%; margin-top: .2rem; }
+.prose .article-figure { margin: 1.8rem 0 2rem; }
+.prose .article-figure > a { display: block; padding: .75rem; background: #fff; border: 1px solid var(--line); cursor: zoom-in; }
+.prose .article-figure img { display: block; width: auto; max-width: 100%; height: auto; margin: 0 auto; border: 0; }
+.prose .article-figure figcaption { margin-top: .65rem; color: var(--muted); font-size: .78rem; line-height: 1.7; }
+.figure-enlarge { display: inline-block; margin-left: .3rem; white-space: normal; }
+
 @media (max-width: 900px) {
   .tgk-shell, .page__footer footer { width: calc(100% - 3rem); }
   .tgk-home { grid-template-columns: minmax(0, 1fr) 210px; column-gap: 2.3rem; }
@@ -111,6 +124,12 @@ pre code { font-size: 1em; }
   .site-nav { gap: 1.3rem; }
 }
 @media (max-width: 700px) {
+  .post-item--with-thumbnail { grid-template-columns: 68px minmax(0, 1fr); gap: 1rem; }
+  .post-thumbnail, .post-thumbnail img { width: 68px; }
+  .post-heading--with-thumbnail { grid-template-columns: 68px minmax(0, 1fr); gap: 1rem; }
+  .post-emblem { width: 68px; }
+  .prose .article-figure > a { padding: .35rem; }
+
   .tgk-shell, .page__footer footer { width: calc(100% - 2.5rem); }
   .site-header { min-height: 95px; gap: 1rem; }
   .brand { width: 300px; max-width: 63%; }

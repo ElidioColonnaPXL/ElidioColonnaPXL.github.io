@@ -5,12 +5,19 @@ layout: default
 <article>
   <header class="page-header post-header">
     <a class="back-link" href="{{ '/' | relative_url }}">← All articles</a>
-    <div class="post-meta">
-      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%d %b %Y" }}</time>
-      {% if page.category %}<span>{{ page.category | escape }}</span>{% endif %}
+    <div class="post-heading{% if page.thumbnail %} post-heading--with-thumbnail{% endif %}">
+      {% if page.thumbnail %}
+      <img class="post-emblem" src="{{ page.thumbnail | relative_url }}" width="104" height="154" alt="{{ page.thumbnail_alt | default: page.title | escape }}" decoding="async">
+      {% endif %}
+      <div class="post-heading-body">
+        <div class="post-meta">
+          <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%d %b %Y" }}</time>
+          {% if page.category %}<span>{{ page.category | escape }}</span>{% endif %}
+        </div>
+        <h1>{{ page.title | escape }}</h1>
+        {% if page.description %}<p class="page-subtitle">{{ page.description | escape }}</p>{% endif %}
+      </div>
     </div>
-    <h1>{{ page.title | escape }}</h1>
-    {% if page.description %}<p class="page-subtitle">{{ page.description | escape }}</p>{% endif %}
   </header>
   <div class="prose">{{ content }}</div>
   <div class="post-end"><a class="text-link" href="{{ '/' | relative_url }}">← Back to articles</a></div>

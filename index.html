@@ -21,13 +21,20 @@ description: "A personal blue-team blog about investigating incidents, understan
   {% if site.posts.size > 0 %}
   <ol class="post-list">
     {% for post in site.posts %}
-    <li class="post-item">
-      <div class="post-meta">
-        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%d %b %Y" }}</time>
-        {% if post.category %}<span>{{ post.category | escape }}</span>{% endif %}
+    <li class="post-item{% if post.thumbnail %} post-item--with-thumbnail{% endif %}">
+      {% if post.thumbnail %}
+      <a class="post-thumbnail" href="{{ post.url | relative_url }}" aria-hidden="true" tabindex="-1">
+        <img src="{{ post.thumbnail | relative_url }}" width="96" height="142" alt="" loading="lazy" decoding="async">
+      </a>
+      {% endif %}
+      <div class="post-item-body">
+        <div class="post-meta">
+          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%d %b %Y" }}</time>
+          {% if post.category %}<span>{{ post.category | escape }}</span>{% endif %}
+        </div>
+        <h3><a href="{{ post.url | relative_url }}">{{ post.title | escape }} <span aria-hidden="true">↗</span></a></h3>
+        {% if post.description %}<p>{{ post.description | escape }}</p>{% else %}<div class="post-excerpt">{{ post.excerpt }}</div>{% endif %}
       </div>
-      <h3><a href="{{ post.url | relative_url }}">{{ post.title | escape }} <span aria-hidden="true">↗</span></a></h3>
-      {% if post.description %}<p>{{ post.description | escape }}</p>{% else %}<div class="post-excerpt">{{ post.excerpt }}</div>{% endif %}
     </li>
     {% endfor %}
   </ol>

@@ -6,6 +6,8 @@ date: 2026-10-24 12:00:00 +0200
 category: "Threat intelligence"
 tags: [APT41, Winnti, RevivalStone, MITRE ATT&CK, Detection Engineering]
 permalink: /articles/tracking-winnti/
+thumbnail: /assets/images/tracking-winnti/apt41logo.png
+thumbnail_alt: "APT41 emblem"
 ---
 
 *The Guarded Kernel · Threat intelligence · Research reviewed: 24 October 2026*
@@ -14,13 +16,16 @@ Manufacturing and energy companies hold information that can take years to devel
 
 After completing Hack The Box's **KitsuneHook** Sherlock, I followed the research behind the questions. This article connects the actor names, selected campaigns and technical findings to practical detection ideas.
 
-**Scope:** an analysis of public reporting, centred on **RevivalStone**. Related cases are labelled separately. The diagrams are original explanations of the cited research; the detection examples are research drafts.
+**Scope:** an analysis of public reporting, centred on **RevivalStone**. Related cases are labelled separately. The figures are reproduced from the research credited in their captions; the detection examples are research drafts.
 
 ## 1. Who is behind the activity?
 
-![APT41 and Winnti Group have separate ATT&CK records with partially overlapping reporting; Blackfly, Earth Freybug and Silver Dragon have source-specific tracking boundaries.]({{ '/assets/images/tracking-winnti/01-actor-relationships.png' | relative_url }})
-
-*Figure 1 — Actor names are research labels. Their boundaries depend on the source.*
+<figure class="article-figure">
+  <a href="{{ '/assets/images/tracking-winnti/whoarewinnti.png' | relative_url }}" target="_blank" rel="noopener" aria-label="Open Figure 1 at full size">
+    <img src="{{ '/assets/images/tracking-winnti/whoarewinnti.png' | relative_url }}" alt="LAC&#x27;s attribution diagram connects APT41 with Chengdu 404, Winnti Group, Earth Baku and Earth Freybug, with an alias relationship marked as uncertain." width="562" height="355" loading="lazy" decoding="async">
+  </a>
+  <figcaption>Figure 1 — LAC's view of actor relationships; the labels and question mark reflect that report's attribution model. Source: <a href="https://www.lac.co.jp/lacwatch/report/20250213_004283.html">LAC, Figure 1</a>. <span class="figure-enlarge">Click the image to view full size ↗</span></figcaption>
+</figure>
 
 - **APT41:** MITRE tracks it as **G0096**, active since at least 2012, with state-sponsored espionage and financially motivated activity.
 - **Winnti Group:** a separate ATT&CK entry, **G0044**, with activity traced to at least 2010. MITRE describes APT41's overlap with Winnti reporting as partial.
@@ -35,9 +40,12 @@ Source: [Mandiant: APT41's dual operations][apt41-profile]
 
 ## 2. Campaigns and targeting: put dates beside the names
 
-![Five reporting snapshots separate observed activity from publication dates: Operation CuckooBees, Blackfly, Earth Freybug, RevivalStone and Silver Dragon.]({{ '/assets/images/tracking-winnti/02-campaign-timeline.png' | relative_url }})
-
-*Figure 2 — Selected reporting, ordered by publication date. Activity windows can overlap.*
+<figure class="article-figure">
+  <a href="{{ '/assets/images/tracking-winnti/minntitimeline.png' | relative_url }}" target="_blank" rel="noopener" aria-label="Open Figure 2 at full size">
+    <img src="{{ '/assets/images/tracking-winnti/minntitimeline.png' | relative_url }}" alt="A historical timeline of Winnti research, malware versions and targeted sectors from 2013 to March 2024." width="1000" height="438" loading="lazy" decoding="async">
+  </a>
+  <figcaption>Figure 2 — LAC's historical Winnti timeline, ending in March 2024. The reporting snapshots below also cover later publications. Source: <a href="https://www.lac.co.jp/lacwatch/report/20250213_004283.html">LAC, Figure 2</a>. <span class="figure-enlarge">Click the image to view full size ↗</span></figcaption>
+</figure>
 
 - **Operation CuckooBees:** espionage against technology and manufacturing organizations across East Asia, Western Europe and North America. MITRE records activity from December 2019 through May 2022.
 - **Blackfly:** Symantec reported attacks in late 2022 and early 2023 affecting materials and composites businesses within an Asian conglomerate.
@@ -60,15 +68,19 @@ Source: [Check Point Research: Silver Dragon][silver-dragon]
 
 ## 3. Inside RevivalStone
 
-![RevivalStone foothold and access-expansion diagram.]({{ '/assets/images/tracking-winnti/03-revivalstone-overview.png' | relative_url }})
-
-*Figure 3 — A simplified view of the compromise and its expansion, based on LAC's investigation.*
 
 - **Entry:** ERP SQL injection.
 - **Web shells:** China Chopper, Behinder and sqlmap's file uploader.
 - **Expansion:** stolen maintenance credentials and an MSP pivot.
 
 Source: [LAC: RevivalStone][revivalstone]
+
+<figure class="article-figure">
+  <a href="{{ '/assets/images/tracking-winnti/revivalstoneattackphases.png' | relative_url }}" target="_blank" rel="noopener" aria-label="Open Figure 3 at full size">
+    <img src="{{ '/assets/images/tracking-winnti/revivalstoneattackphases.png' | relative_url }}" alt="RevivalStone execution flow: SessionEnv loads TSMSISrv.dll, then the loader and encrypted DAT payload, followed by the RAT and rootkit deployment." width="800" height="340" loading="lazy" decoding="async">
+  </a>
+  <figcaption>Figure 3 — The RevivalStone malware execution flow, from the SessionEnv service to rootkit deployment. Source: <a href="https://www.lac.co.jp/lacwatch/report/20250213_004283.html">LAC, Figure 7</a>. <span class="figure-enlarge">Click the image to view full size ↗</span></figcaption>
+</figure>
 
 The defensive questions are useful beyond this particular case:
 
@@ -80,9 +92,12 @@ These are **hunting questions derived from the reported chain**. They need local
 
 ## 4. Malware roles and technical clues
 
-![The historical CuckooBees chain separates PRIVATELOG, a loader; DEPLOYLOG, a user-mode agent and rootkit deployer; and WINNKIT, a kernel rootkit.]({{ '/assets/images/tracking-winnti/04-malware-roles.png' | relative_url }})
-
-*Figure 4 — Malware roles documented in Cybereason's Operation CuckooBees research.*
+<figure class="article-figure">
+  <a href="{{ '/assets/images/tracking-winnti/winntiattackckain.png' | relative_url }}" target="_blank" rel="noopener" aria-label="Open Figure 4 at full size">
+    <img src="{{ '/assets/images/tracking-winnti/winntiattackckain.png' | relative_url }}" alt="The Operation CuckooBees attack life cycle, including exploitation, persistence, reconnaissance, credential dumping, lateral movement and collection." width="586" height="523" loading="lazy" decoding="async">
+  </a>
+  <figcaption>Figure 4 — The Operation CuckooBees attack life cycle. This historical case provides context for the component roles in the table below. Source: <a href="https://www.cybereason.com/blog/operation-cuckoobees-deep-dive-into-stealthy-winnti-techniques">Cybereason, Operation CuckooBees</a>. <span class="figure-enlarge">Click the image to view full size ↗</span></figcaption>
+</figure>
 
 | Component | Role in that investigation | Why the distinction matters |
 |---|---|---|
@@ -94,9 +109,6 @@ Cybereason also describes PRIVATELOG masquerading as **prntvpt.dll** and using t
 
 Source: [Cybereason: malware arsenal deep-dive][cuckoo-arsenal]
 
-![Four technical clues, with their evidence types and sources labelled.]({{ '/assets/images/tracking-winnti/05-technical-clues.png' | relative_url }})
-
-*Figure 5 — Four clues with different evidential value: infrastructure context, version inference, a default configuration and a decryption detail.*
 
 - **TreadStone:** Unit 42 found the controller name in Linux remote-control documentation from the **i-Soon leak**. Its report distinguishes the evidence from the unresolved question of who developed or supplied the tools.
 - **Version inference:** LAC interpreted `StoneV5` PDB strings as suggesting **Winnti v5.0**.
@@ -109,13 +121,17 @@ For an investigation, I would record **where each clue came from**. A PDB string
 
 ## 5. C2: three communication models
 
-![Three separately sourced communication models: RevivalStone's listening implant, Earth Freybug's Graph-based mailbox commands and Silver Dragon's Google Drive tasking.]({{ '/assets/images/tracking-winnti/06-c2-models.png' | relative_url }})
-
-*Figure 6 — Different communication models from separate investigations. These are conceptual diagrams, not reconstructed packet captures.*
 
 ### A. RevivalStone: a listening implant
 
 The **listening RAT** receives specially handled inbound traffic through the rootkit.
+
+<figure class="article-figure">
+  <a href="{{ '/assets/images/tracking-winnti/revivalstonekernel.png' | relative_url }}" target="_blank" rel="noopener" aria-label="Open Figure 5 at full size">
+    <img src="{{ '/assets/images/tracking-winnti/revivalstonekernel.png' | relative_url }}" alt="RevivalStone communication diagram showing the user-mode RAT, kernel rootkit, Beep and Null devices, TCP/IP handlers and C2 traffic." width="800" height="434" loading="lazy" decoding="async">
+  </a>
+  <figcaption>Figure 5 — RevivalStone's user-mode, kernel-mode and network communication flow. Source: <a href="https://www.lac.co.jp/lacwatch/report/20250213_004283.html">LAC, Figure 8</a>. <span class="figure-enlarge">Click the image to view full size ↗</span></figcaption>
+</figure>
 
 - **Hunting implication:** outbound beaconing is only one possible C2 pattern.
 - Correlate inbound sessions with host evidence and the exposed service inventory.
@@ -149,6 +165,13 @@ The shared defensive problem is **understanding who or what is using a channel**
 
 This is a **selected analyst mapping**, with the supporting investigation identified in each row. It combines several cases for comparison; it does not claim that all techniques occurred in one intrusion.
 
+<figure class="article-figure">
+  <a href="{{ '/assets/images/tracking-winnti/apt41mittreframe.webp' | relative_url }}" target="_blank" rel="noopener" aria-label="Open Figure 6 at full size">
+    <img src="{{ '/assets/images/tracking-winnti/apt41mittreframe.webp' | relative_url }}" alt="Group-IB ATT&amp;CK matrix for four APT41 campaigns observed in 2021, with techniques arranged under tactics." width="1680" height="1034" loading="lazy" decoding="async">
+  </a>
+  <figcaption>Figure 6 — Group-IB's mapping of four APT41 campaigns observed in 2021, published in 2022. This is historical context, separate from our selected mapping below. Source: <a href="https://www.group-ib.com/blog/apt41-world-tour-2021/">Group-IB, APT41 World Tour 2021</a>. <span class="figure-enlarge">Click the image to view full size ↗</span></figcaption>
+</figure>
+
 | Reported behavior | ATT&CK technique | Evidence source |
 |---|---|---|
 | ERP exploitation | [T1190 — Exploit Public-Facing Application](https://attack.mitre.org/techniques/T1190/) | [RevivalStone][revivalstone] |
@@ -164,9 +187,6 @@ Technique IDs make the research easier to compare with detections and coverage g
 
 ## 7. From reporting to detection
 
-![A detection workflow connects a signal to context, corroborating evidence and a documented investigation decision.]({{ '/assets/images/tracking-winnti/07-detection-workflow.png' | relative_url }})
-
-*Figure 7 — An investigation workflow proposed for this article.*
 
 ### Start with the telemetry
 
@@ -263,6 +283,7 @@ These are the illustrative research drafts discussed above.
 
 ## Sources
 
+- [Group-IB — APT41 World Tour 2021 on a tight schedule][group-ib], 18 August 2022. Source of the historical ATT&CK matrix in Figure 6.
 - [MITRE ATT&CK — APT41, G0096][apt41]. Actor profile and partial-overlap wording.
 - [MITRE ATT&CK — Winnti Group, G0044][winnti]. Separate actor record and Blackfly association.
 - [Mandiant — APT41: A Dual Espionage and Cyber Crime Operation][apt41-profile], 7 August 2019. Original actor-profile research.
@@ -294,3 +315,5 @@ These are the illustrative research drafts discussed above.
 [sysmon]: https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon
 [sigma]: https://sigmahq.io/docs/basics/rules.html
 [yara]: https://yara.readthedocs.io/en/stable/writingrules.html
+
+[group-ib]: https://www.group-ib.com/blog/apt41-world-tour-2021/
