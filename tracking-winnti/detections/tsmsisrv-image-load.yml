@@ -1,0 +1,22 @@
+title: TSMSISrv DLL Loaded by Svchost
+id: 94368eb6-42a1-4a04-95f2-15374336a160
+status: experimental
+description: Flags a DLL-loading pattern for investigation.
+author: The Guarded Kernel
+date: 2026-10-24
+references:
+    - https://www.lac.co.jp/lacwatch/report/20250213_004283.html
+tags:
+    - attack.t1574.001
+logsource:
+    category: image_load
+    product: windows
+detection:
+    selection:
+        Image|endswith: '\svchost.exe'
+        ImageLoaded|endswith: '\TSMSISrv.dll'
+    condition: selection
+falsepositives:
+    - Software using the same DLL name
+    - Authorized security testing
+level: medium

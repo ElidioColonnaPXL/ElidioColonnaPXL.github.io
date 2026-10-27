@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-27",
+  "sample_sha256": "caf4e182e31631bba63fcc17c30b8ec23cdd77147f445b01e1681d1830fe932f",
+  "yara_engine": "yara-x 1.22.1",
+  "yara_match": [
+    "TGK_KeyDis_Discord_String_Cluster"
+  ],
+  "negative_fixture_scope": "non-PE article/image fixtures, not a benign PE corpus",
+  "negative_fixture_count": 9,
+  "negative_matches": [],
+  "sigma_parser": "pysigma 1.5.1",
+  "sigma_backend": "pysigma-backend-splunk 2.1.0",
+  "sigma_pipeline": "sysmon_pipeline + splunk_windows_pipeline",
+  "spl_queries": [
+    "source=\"WinEventLog:Microsoft-Windows-Sysmon/Operational\" EventCode=22 QueryName IN (\"discord.com\", \"discord.com.\") Image IN (\"*\\\\Downloads\\\\*\", \"*\\\\AppData\\\\Local\\\\Temp\\\\*\")"
+  ],
+  "siem_execution": false,
+  "malware_executed": false,
+  "sigma_sysmon_pipeline": "pysigma-pipeline-sysmon 2.0.0",
+  "content_audit": {
+    "figures": 7,
+    "images_with_alt": 9,
+    "local_links": "all present",
+    "plaintext_bot_token_in_public_files": false,
+    "jekyll_build": false,
+    "jekyll_build_limit": "Ruby/Bundler/Jekyll unavailable",
+    "browser_preview_limit": "No enabled browser surface; HTML generated and structurally checked"
+  }
+}
