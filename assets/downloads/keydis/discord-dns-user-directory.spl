@@ -1,0 +1,1 @@
+source="WinEventLog:Microsoft-Windows-Sysmon/Operational" EventCode=22 QueryName IN ("discord.com", "discord.com.") Image IN ("*\\Downloads\\*", "*\\AppData\\Local\\Temp\\*")

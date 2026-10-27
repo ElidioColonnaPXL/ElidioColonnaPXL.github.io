@@ -1,0 +1,31 @@
+title: Discord DNS Query From a Download or Temporary Directory
+id: ee127a91-0496-4f30-94e6-8779c5da2633
+status: experimental
+description: >-
+    Flags process-origin Discord DNS queries from a Downloads or user temporary
+    directory for investigation. Does not establish keylogging or exfiltration.
+author: The Guarded Kernel
+date: 2026-10-27
+references:
+    - https://theguardedkernel.be/articles/keydis/
+    - https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon
+tags:
+    - attack.exfiltration
+    - attack.t1567
+logsource:
+    category: dns_query
+    product: windows
+detection:
+    selection_domain:
+        QueryName:
+            - 'discord.com'
+            - 'discord.com.'
+    selection_location:
+        Image|contains:
+            - '\Downloads\'
+            - '\AppData\Local\Temp\'
+    condition: selection_domain and selection_location
+falsepositives:
+    - Portable chat clients and legitimate bots
+    - Installers and developer utilities launched from these directories
+level: low
