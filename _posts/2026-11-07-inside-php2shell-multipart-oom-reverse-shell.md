@@ -1,10 +1,10 @@
 ---
 layout: post
 title: "Inside PHP2Shell: From Multipart OOM to a Reverse Shell"
-description: "A packet-and-log reconstruction of a PHP2Shell attack: Apache worker saturation, multipart memory exhaustion, a PHPSESSID heap leak, and a www-data reverse shell."
-date: 2026-11-07 13:00:00 +0100
+description: "PHP2Shell attack: Apache worker saturation, multipart memory exhaustion, a PHPSESSID heap leak, and a www-data reverse shell."
+date: 2026-11-07 
 category: "Incident analysis"
-tags: [PHP2Shell, PHP, CVE-2026-109618, CVE-2026-109619, DFIR, Detection Engineering]
+tags: [PHP2Shell, PHP, CVE-2026-109618, CVE-2026-109619, DFIR]
 permalink: /articles/inside-php2shell-multipart-oom-reverse-shell/
 thumbnail: /assets/images/php2shell/php2shell-cover.png
 thumbnail_alt: "A PHP logo with binary digits leaking beneath it"
@@ -14,11 +14,11 @@ thumbnail_alt: "A PHP logo with binary digits leaking beneath it"
 
 ## Scenario
 
-The DevNotes.org team noticed suspicious traffic to an internal development server. In the retired Hack The Box Sherlock *dOOMs Day*, we receive a subnet packet capture and Apache access and error logs. The server is **192.168.72.50**; the attack traffic comes from **192.168.72.1**. My goal was to reconstruct what the traffic did, not just identify the CVE names.
+The DevNotes.org team noticed suspicious traffic to an internal development server. In the the Sherlock *dOOMs Day*, we have a subnet packet capture and Apache access and error logs. The server is **192.168.72.50**; the attack traffic comes from **192.168.72.1**.
 
-The short version: an attacker filled the Apache prefork worker pool with multipart uploads, sent memory-intensive requests to PHP, received an unusually large `PHPSESSID` cookie containing heap data, and obtained a reverse shell as `www-data`. The network capture then shows database-file discovery and a read of a SQLite file. PHP's October 2026 advisories explain how [OOM corruption][php-oom] and [stale worker-global state][php-stale] can be chained across requests handled by the same worker. The packets and logs show the effects in this lab; they do not expose every internal heap operation.
+So what happened in a nutshell: an attacker filled the Apache prefork worker pool with chars, sent memory-intensive requests to PHP, received an suspicious large `PHPSESSID` cookie containing heap data, and succeeded a reverse shell as `www-data`. The network traffic then shows databasediscovery and a read of a SQLite file. PHP's October 2026 advisories explain how [OOM corruption][php-oom] and [stale worker-global state][php-stale] can be chained across requests handled by the same worker. The packets and logs show the effects in this lab.
 
-**Scope:** `Capture.pcap`, `access.log`, and `error.log` supplied with the Sherlock. All incident times below are **UTC** on 28 October 2026. Wireshark set to local time in Belgium can show these packets one hour later. The screenshots are selected views from my investigation; the full capture and logs support the counts and timestamps.
+**Scope:** `Capture.pcap`, `access.log`, and `error.log` supplied with the Sherlock. All incident times below are **UTC** on 28/10/2026. Wireshark set to local time in Belgium can show these packets one hour later.
 
 <figure class="article-figure">
   <a href="{{ '/assets/images/php2shell/php2shell-attack-chain.png' | relative_url }}" target="_blank" rel="noopener" aria-label="Open the PHP2Shell attack chain at full size">
@@ -29,7 +29,7 @@ The short version: an attacker filled the Apache prefork worker pool with multip
 
 ## 1. Establish the server and the first request
 
-Apache's startup line identifies `Apache/2.4.69 (Debian) PHP/8.4.26` with `mpm_prefork`. The HTTP `X-Powered-By` response also exposes PHP 8.4.26. That release precedes the [8.4.27 security fix][php-advisory].
+Apache's startup line gives `Apache/2.4.69 (Debian) PHP/8.4.26` with `mpm_prefork`. The HTTP `X-Powered-By` response also exposes PHP 8.4.26. That release precedes the [8.4.27 security fix][php-advisory].
 
 <figure class="article-figure">
   <a href="{{ '/assets/images/php2shell/php-version.png' | relative_url }}" target="_blank" rel="noopener" aria-label="Open the PHP version evidence">
@@ -38,7 +38,7 @@ Apache's startup line identifies `Apache/2.4.69 (Debian) PHP/8.4.26` with `mpm_p
   <figcaption>Figure 2 — The response header identifies the PHP version; the Apache startup entry independently corroborates it. <span class="figure-enlarge">Click the image to view full size ↗</span></figcaption>
 </figure>
 
-The first anomalous request in `error.log` begins at **08:42:52.530199 UTC**. The corresponding PCAP request begins at **08:42:52.530036 UTC** (frame 6089); the small difference is between two observation points. It is a `POST /index.php` with `Transfer-Encoding: chunked` and `Content-Type: multipart/form-data; boundary=ZZZZZZZZZZ`.
+The first suspicious request in `error.log` begins at **08:42:52.530199 UTC**. The related PCAP request begins at **08:42:52.530036 UTC** (frame 6089); the small difference is between two observation points. It is a `POST /index.php` with `Transfer-Encoding: chunked` and `Content-Type: multipart/form-data; boundary=ZZZZZZZZZZ`.
 
 <figure class="article-figure">
   <a href="{{ '/assets/images/php2shell/first-exploit-request.png' | relative_url }}" target="_blank" rel="noopener" aria-label="Open the first attack request timestamp">
@@ -126,7 +126,7 @@ Apache records child **PID 145** exiting with segmentation fault at **08:46:16.5
 
 ## 6. Reproduce the hunt
 
-These filters bring the relevant packets or log lines back into view. Set Wireshark's time display to **UTC** when comparing it with the Apache `+0000` timestamps. The `tcp contains` filters match packet bytes and may miss a string split across TCP segments; **Follow TCP Stream** is useful for the shell and long responses.
+These filters bring the relevant packets or log lines back into view. Set Wireshark's time display to **UTC** when comparing it with the Apache `+0000` timestamps. The `tcp contains` filters match packet bytes and may miss a string split across TCP segments.
 
 | Question | Wireshark display filter or log query |
 | --- | --- |
