@@ -216,6 +216,7 @@ The most useful evidence was not a single exploit string. It was the progression
 - [PHP: RCE via stale global state, CVE-2026-109619][php-stale] — cross-request producer/consumer mechanism and memory disclosure.
 - [Sigma correlation rules][sigma-correlation] — syntax for the illustrative event-count analytic.
 - Hack The Box, retired *dOOMs Day* Sherlock — scenario and supplied `Capture.pcap`, `access.log` and `error.log`; figures are from my analysis of those files.
+- CyberJunkie, *dOOMs day Writeup*, 29 October 2026 — supplied PDF consulted for case context; technical findings above were checked against the PCAP and logs, and no figures or prose were reproduced.
 
 [php-advisory]: https://www.php.net/?p=6507
 [php-oom]: https://github.com/php/php-src/security/advisories/GHSA-w8hw-w9fx-j79w
