@@ -1,7 +1,7 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>KeyDis: Anatomy of a Windows Keylogger</title><style>
-*{box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+*{box-sizing:border-box}body{font-family:var(--site-font)}
 :root {
   color-scheme: light;
   --bg: #f5f7f4;
@@ -10,7 +10,7 @@
   --muted: #56655b;
   --accent: #277145;
   --line: #d3ddd2;
-  --mono: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, monospace;
+  --site-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 html { font-size: 16px; scroll-padding-top: 1.5rem; }
@@ -30,15 +30,15 @@ p { margin: 0 0 1.25rem; }
 .site-header { display: flex; justify-content: space-between; align-items: center; gap: 2rem; min-height: 114px; }
 .brand { display: block; width: 390px; max-width: 62%; text-decoration: none; }
 .brand-logo { display: block; width: 100%; height: auto; filter: invert(1) hue-rotate(180deg) saturate(.6); }
-.site-nav { display: flex; flex-shrink: 0; gap: 2rem; font: .85rem/1.6 var(--mono); }
+.site-nav { display: flex; flex-shrink: 0; gap: 2rem; font: .85rem/1.6 var(--site-font); }
 .site-nav a { padding: .5rem 0; text-decoration: none; color: var(--muted); border-bottom: 2px solid transparent; }
 .site-nav a span { color: #7b8d7b; }
 .site-nav a:hover, .site-nav a[aria-current="page"] { color: var(--accent); border-bottom-color: var(--accent); }
 .tgk-home { display: grid; grid-template-columns: minmax(0, 1fr) 245px; column-gap: 5rem; }
 .intro { grid-column: 1; grid-row: 1; padding: 3.8rem 0 3.4rem; }
-.command { color: #637562; font: .75rem/1.6 var(--mono); margin-bottom: 2rem; }
+.command { color: #637562; font: .75rem/1.6 var(--site-font); margin-bottom: 2rem; }
 .prompt { margin-right: .6rem; color: var(--accent); }
-.eyebrow { color: var(--muted); font: .68rem/1.7 var(--mono); text-transform: uppercase; letter-spacing: .13em; margin-bottom: 1.3rem; }
+.eyebrow { color: var(--muted); font: .68rem/1.7 var(--site-font); text-transform: uppercase; letter-spacing: .13em; margin-bottom: 1.3rem; }
 .intro h1 { font-size: clamp(2.9rem, 5.6vw, 4.7rem); font-weight: 700; letter-spacing: -.055em; line-height: 1.08; margin: 0 0 1.7rem; }
 .accent { color: var(--accent); }
 .intro-copy { color: var(--muted); font-size: 1.05rem; line-height: 1.85; max-width: 610px; margin-bottom: 1.5rem; }
@@ -49,21 +49,21 @@ p { margin: 0 0 1.25rem; }
 .section-heading { display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; margin-bottom: 1.4rem; }
 .section-heading .command { margin-bottom: .5rem; font-size: .7rem; }
 .section-heading h2 { font-size: 1.5rem; margin: 0; }
-.count { font: .7rem/1.5 var(--mono); color: var(--muted); white-space: nowrap; margin-bottom: .2rem; }
+.count { font: .7rem/1.5 var(--site-font); color: var(--muted); white-space: nowrap; margin-bottom: .2rem; }
 .empty-state { display: flex; gap: 1rem; padding: 1.6rem; border: 1px solid var(--line); background: var(--surface); border-radius: 4px; }
-.empty-marker { font: .85rem/1.7 var(--mono); white-space: nowrap; color: var(--accent); }
+.empty-marker { font: .85rem/1.7 var(--site-font); white-space: nowrap; color: var(--accent); }
 .empty-state h3 { font-size: .95rem; line-height: 1.6; margin-bottom: .4rem; letter-spacing: -.015em; }
 .empty-state p { font-size: .875rem; color: var(--muted); margin: 0; line-height: 1.8; }
 .topics-section { grid-column: 2; grid-row: 1 / 3; margin: 3.8rem 0; padding-left: 1.7rem; border-left: 1px solid var(--line); align-self: start; }
-.small-heading { color: var(--muted); font: .68rem/1.8 var(--mono); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 1.9rem; }
+.small-heading { color: var(--muted); font: .68rem/1.8 var(--site-font); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 1.9rem; }
 .topic-list { margin: 0; }
 .topic-list > div + div { border-top: 1px solid var(--line); padding-top: 1.5rem; margin-top: 1.5rem; }
 .topic-list dt { font-size: .94rem; font-weight: 650; line-height: 1.5; margin: 0 0 .65rem; }
-.topic-list dt span { display: block; font: .7rem/1.5 var(--mono); color: var(--accent); margin-bottom: .7rem; }
+.topic-list dt span { display: block; font: .7rem/1.5 var(--site-font); color: var(--accent); margin-bottom: .7rem; }
 .topic-list dd { color: var(--muted); font-size: .82rem; line-height: 1.85; margin: 0; }
 .page__footer { position: static; float: none; margin-top: 0; background: var(--surface); border-top: 1px solid var(--line); color: var(--muted) !important; }
 .page__footer footer { max-width: 1120px; width: calc(100% - 5rem); padding: 0; margin: 0 auto; }
-.site-footer { display: flex; justify-content: space-between; gap: 1.2rem; padding: 1.7rem 0; font: .7rem/1.7 var(--mono); }
+.site-footer { display: flex; justify-content: space-between; gap: 1.2rem; padding: 1.7rem 0; font: .7rem/1.7 var(--site-font); }
 .site-footer p { margin: 0; }
 .site-footer a { color: var(--muted); text-decoration: none; }
 .footer-prompt { color: var(--accent); margin-right: .55rem; }
@@ -84,7 +84,7 @@ p { margin: 0 0 1.25rem; }
 .prose blockquote { font-style: normal; border-left: 3px solid var(--accent); margin: 1.5rem 0; padding: .2rem 0 .2rem 1.4rem; }
 .prose blockquote p:last-child { margin-bottom: 0; }
 .prose hr { border-top: 1px solid var(--line); margin: 2rem 0; }
-code, pre { font-family: var(--mono); font-size: .86em; }
+code, pre { font-family: var(--site-font); font-size: .86em; }
 :not(pre) > code { padding: .12em .35em; background: #eaf0e7; border-radius: 3px; color: var(--text); }
 pre { overflow-x: auto; padding: 1.2rem; border: 1px solid var(--line); background: #eaf0e7; line-height: 1.65; }
 pre code { font-size: 1em; }
@@ -96,7 +96,7 @@ pre code { font-size: 1em; }
 .post-item { padding: 1.6rem 0; border-bottom: 1px solid var(--line); }
 .post-item:first-child { padding-top: .5rem; }
 .post-item:last-child { border-bottom: 0; }
-.post-meta { display: flex; flex-wrap: wrap; gap: .4rem 1rem; font: .72rem/1.8 var(--mono); color: var(--muted); margin-bottom: .75rem; }
+.post-meta { display: flex; flex-wrap: wrap; gap: .4rem 1rem; font: .72rem/1.8 var(--site-font); color: var(--muted); margin-bottom: .75rem; }
 .post-meta span { color: var(--accent); }
 .post-item h3 { font-size: 1.4rem; margin: 0 0 .7rem; }
 .post-item h3 a { color: var(--text); text-decoration: none; }
