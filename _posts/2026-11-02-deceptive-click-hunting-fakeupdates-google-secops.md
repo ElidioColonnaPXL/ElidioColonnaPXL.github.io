@@ -7,6 +7,7 @@ category: "Incident analysis"
 tags: [FAKEUPDATES, Google SecOps, Threat Hunting, YARA-L, Detection Engineering]
 permalink: /articles/deceptive-click-fakeupdates/
 thumbnail: /assets/images/deceptive-click/deceptive-click-hero.png
+card_thumbnail: /assets/images/deceptive-click/deceptive-click-hero.webp
 thumbnail_alt: "Google SecOps and FAKEUPDATES article artwork showing a deceptive Chrome update prompt"
 ---
 

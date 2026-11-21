@@ -7,6 +7,7 @@ category: "Malware analysis"
 tags: [KeyDis, Reverse Engineering, Keylogging, Discord, Detection Engineering]
 permalink: /articles/keydis/
 thumbnail: /assets/images/keydis/keydis-cover.png
+card_thumbnail: /assets/images/keydis/keydis-cover.webp
 thumbnail_alt: "Discord emblem connected to a keyboard with a highlighted captured key"
 ---
 
