@@ -7,9 +7,8 @@ date: 2026-11-02 10:00:00 +0100
 category: "Incident analysis"
 tags: [FAKEUPDATES, Google SecOps, Threat Hunting, YARA-L, Detection Engineering]
 permalink: /articles/deceptive-click-fakeupdates/
-thumbnail: /assets/images/deceptive-click/deceptive-click-hero.png
-card_thumbnail: /assets/images/deceptive-click/deceptive-click-wide-homepage.webp
-thumbnail_alt: "Google SecOps and FAKEUPDATES article artwork showing a deceptive Chrome update prompt"
+thumbnail: /assets/images/deceptive-click/deceptive-click-wide-homepage.webp
+thumbnail_alt: "Google SecOps logo above a disguised Chrome icon and a warning about a fake update"
 ---
 
 *The Guarded Kernel · Incident analysis · Research reviewed: 2 November 2026*

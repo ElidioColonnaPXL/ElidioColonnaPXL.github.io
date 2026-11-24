@@ -7,9 +7,8 @@ date: 2026-10-27 08:00:00 +0100
 category: "Malware analysis"
 tags: [KeyDis, Reverse Engineering, Keylogging, Discord, Detection Engineering]
 permalink: /articles/keydis/
-thumbnail: /assets/images/keydis/keydis-cover.png
-card_thumbnail: /assets/images/keydis/keydis-keypresses-to-discord-homepage.webp
-thumbnail_alt: "Discord emblem connected to a keyboard with a highlighted captured key"
+thumbnail: /assets/images/keydis/keydis-keypresses-to-discord-homepage.webp
+thumbnail_alt: "Keystrokes move from a black keyboard toward the Discord logo"
 ---
 
 *The Guarded Kernel · Malware analysis · Research reviewed: 27 October 2026*
