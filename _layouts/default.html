@@ -22,7 +22,11 @@
     <div id="footer" class="page__footer">
       <footer>
         {% include footer/custom.html %}
-        {% include_cached footer.html locale=locale %}
+        {% if page.layout == "home" %}
+          <div class="site-footer home-footer"><span>The Guarded Kernel</span><a href="{{ '/about/' | relative_url }}">About the author</a></div>
+        {% else %}
+          {% include_cached footer.html locale=locale %}
+        {% endif %}
       </footer>
     </div>
     {% include scripts.html locale=locale %}
