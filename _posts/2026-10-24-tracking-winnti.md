@@ -7,7 +7,7 @@ category: "Threat intelligence"
 tags: [APT41, Winnti, RevivalStone, MITRE ATT&CK, Detection Engineering]
 permalink: /articles/tracking-winnti/
 thumbnail: /assets/images/tracking-winnti/apt41logo.png
-card_thumbnail: /assets/images/tracking-winnti/apt41logo.webp
+card_thumbnail: /assets/images/tracking-winnti/tracking-winnti-apt41-homepage.webp
 thumbnail_alt: "APT41 emblem"
 ---
 

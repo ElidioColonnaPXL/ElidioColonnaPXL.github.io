@@ -8,7 +8,7 @@ category: "Incident analysis"
 tags: [PHP2Shell, PHP, CVE-2026-109618, CVE-2026-109619, DFIR]
 permalink: /articles/inside-php2shell-multipart-oom-reverse-shell/
 thumbnail: /assets/images/php2shell/php2shell-cover.png
-card_thumbnail: /assets/images/php2shell/php2shell-cover.webp
+card_thumbnail: /assets/images/php2shell/php2shell-php-to-bash-homepage.webp
 thumbnail_alt: "A PHP logo with binary digits leaking beneath it"
 ---
 

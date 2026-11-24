@@ -8,7 +8,7 @@ category: "Incident analysis"
 tags: [Windows, Threat Hunting, Scheduled Tasks, Elastic, DFIR]
 permalink: /articles/hunting-scheduled-task-masquerading-in-windows/
 thumbnail: /assets/images/windows-task-masquerading/windows-task-masquerading-cover.png
-card_thumbnail: /assets/images/windows-task-masquerading/windows-task-masquerading-cover.webp
+card_thumbnail: /assets/images/windows-task-masquerading/windows-task-masquerading-lineup-homepage.webp
 thumbnail_alt: "Blue Windows logo wearing black round glasses and a curled moustache"
 ---
 

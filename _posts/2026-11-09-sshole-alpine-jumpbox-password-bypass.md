@@ -8,7 +8,7 @@ category: "Incident analysis"
 tags: [SSHole, OpenSSH, Alpine Linux, CVE-2026-123158, DFIR]
 permalink: /articles/sshole-alpine-jumpbox-password-bypass/
 thumbnail: /assets/images/sshole/sshole-cover.png
-card_thumbnail: /assets/images/sshole/sshole-cover.webp
+card_thumbnail: /assets/images/sshole/sshole-cover-homepage.webp
 thumbnail_alt: "Alpine Linux logo above an open door marked SSH"
 ---
 
