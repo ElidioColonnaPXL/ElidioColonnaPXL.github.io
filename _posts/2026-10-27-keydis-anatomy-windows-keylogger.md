@@ -2,6 +2,7 @@
 layout: post
 title: "KeyDis: Anatomy of a Windows Keylogger"
 description: "Following a Windows keylogger from hidden API calls and keyboard capture to encrypted Discord exfiltration, then turning the evidence into detection ideas."
+card_description: "Follow hidden API calls and keyboard capture to encrypted Discord exfiltration, then turn the evidence into detection ideas."
 date: 2026-10-27 08:00:00 +0100
 category: "Malware analysis"
 tags: [KeyDis, Reverse Engineering, Keylogging, Discord, Detection Engineering]

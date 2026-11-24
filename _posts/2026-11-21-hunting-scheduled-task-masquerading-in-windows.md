@@ -2,6 +2,7 @@
 layout: post
 title: "Hunting Scheduled Task Masquerading in Windows"
 description: "One missing letter exposed a lookalike Windows task. I used Elastic to connect an RDP session, network reconnaissance, and suspicious execution on a SQL server."
+card_description: "One missing letter gave away a lookalike Windows task. I followed the trail in Elastic."
 date: 2026-11-21
 category: "Incident analysis"
 tags: [Windows, Threat Hunting, Scheduled Tasks, Elastic, DFIR]

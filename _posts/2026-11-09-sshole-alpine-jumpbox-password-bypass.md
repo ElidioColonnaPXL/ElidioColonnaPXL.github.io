@@ -2,6 +2,7 @@
 layout: post
 title: "SSHole: A Password Bypass on an Alpine Jumpbox"
 description: "An Alpine jumpbox accepted an SSH password for a passwordless account. I trace the login, internal host notes, and attempted file upload in the SSHole Sherlock."
+card_description: "An Alpine jumpbox accepted an SSH password for a passwordless account. Follow the login, internal host notes, and attempted file upload."
 date: 2026-11-09
 category: "Incident analysis"
 tags: [SSHole, OpenSSH, Alpine Linux, CVE-2026-123158, DFIR]

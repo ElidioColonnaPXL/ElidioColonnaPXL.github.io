@@ -2,6 +2,7 @@
 layout: post
 title: "Inside PHP2Shell: From Multipart OOM to a Reverse Shell"
 description: "PHP2Shell attack: Apache worker saturation, multipart memory exhaustion, a PHPSESSID heap leak, and a www-data reverse shell."
+card_description: "Apache worker saturation, multipart memory exhaustion, a PHPSESSID heap leak, and a www-data reverse shell."
 date: 2026-11-07 
 category: "Incident analysis"
 tags: [PHP2Shell, PHP, CVE-2026-109618, CVE-2026-109619, DFIR]

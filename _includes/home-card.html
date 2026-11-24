@@ -1,0 +1,20 @@
+{% assign entry = include.post %}
+{% assign cover = entry.card_thumbnail | default: entry.thumbnail %}
+{% assign heading = 'h3' %}
+{% if include.featured %}{% assign heading = 'h2' %}{% endif %}
+<article class="article-card">
+  {% if cover %}
+    {% assign cover_url = cover | relative_url | escape %}
+    <div class="card-cover" aria-hidden="true" style="--cover: url('{{ cover_url }}')">
+      <img src="{{ cover_url }}" alt=""{% unless include.featured %} loading="lazy"{% endunless %} decoding="async">
+    </div>
+  {% endif %}
+  <div class="card-body">
+    <div class="card-meta">
+      {% if include.featured %}<span>Latest investigation</span>{% elsif entry.category %}<span>{{ entry.category | escape }}</span>{% endif %}
+      <time datetime="{{ entry.date | date_to_xmlschema }}">{{ entry.date | date: "%d %b %Y" }}</time>
+    </div>
+    <{{ heading }}><a href="{{ entry.url | relative_url }}">{{ entry.title | escape }}</a></{{ heading }}>
+    <p>{{ entry.card_description | default: entry.description | default: entry.excerpt | strip_html | strip | escape }}</p>
+  </div>
+</article>

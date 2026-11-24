@@ -2,6 +2,7 @@
 layout: post
 title: "Deceptive Click: Hunting FAKEUPDATES in Google SecOps"
 description: "A Google SecOps investigation from a fake Chrome update and JavaScript execution to a Kerberos ticket request, service-account activity and an archive on a file server."
+card_description: "A fake Chrome update leads through JavaScript execution, a Kerberos ticket request, service-account activity, and an archive on a file server."
 date: 2026-11-02 10:00:00 +0100
 category: "Incident analysis"
 tags: [FAKEUPDATES, Google SecOps, Threat Hunting, YARA-L, Detection Engineering]
