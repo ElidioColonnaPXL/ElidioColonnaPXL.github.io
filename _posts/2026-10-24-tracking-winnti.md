@@ -6,9 +6,8 @@ date: 2026-10-24 12:00:00 +0200
 category: "Threat intelligence"
 tags: [APT41, Winnti, RevivalStone, MITRE ATT&CK, Detection Engineering]
 permalink: /articles/tracking-winnti/
-thumbnail: /assets/images/tracking-winnti/apt41logo.png
-card_thumbnail: /assets/images/tracking-winnti/apt41logo.webp
-thumbnail_alt: "APT41 emblem"
+thumbnail: /assets/images/tracking-winnti/tracking-winnti-apt41-homepage.webp
+thumbnail_alt: "Ivory dragon beside a vintage computer displaying APT41"
 ---
 
 *The Guarded Kernel · Threat intelligence · Research reviewed: 24 October 2026*
