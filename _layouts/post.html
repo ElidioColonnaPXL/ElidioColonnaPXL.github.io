@@ -5,15 +5,19 @@ layout: default
 <article>
   <header class="page-header post-header">
     <a class="back-link" href="{{ '/' | relative_url }}">← All articles</a>
-    {% if page.thumbnail %}
-    <img class="post-cover" src="{{ page.thumbnail | relative_url | escape }}" width="1600" height="900" alt="{{ page.thumbnail_alt | escape }}" decoding="async">
-    {% endif %}
-    <div class="post-meta">
-      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%d %b %Y" }}</time>
-      {% if page.category %}<span>{{ page.category | escape }}</span>{% endif %}
+    <div class="post-hero{% if page.thumbnail %} post-hero--with-cover{% endif %}">
+      <div class="post-intro">
+        <div class="post-meta">
+          <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%d %b %Y" }}</time>
+          {% if page.category %}<span>{{ page.category | escape }}</span>{% endif %}
+        </div>
+        <h1>{{ page.title | escape }}</h1>
+        {% if page.description %}<p class="page-subtitle">{{ page.description | escape }}</p>{% endif %}
+      </div>
+      {% if page.thumbnail %}
+        <img class="post-cover" src="{{ page.thumbnail | relative_url | escape }}" width="1600" height="900" alt="{{ page.thumbnail_alt | escape }}" decoding="async">
+      {% endif %}
     </div>
-    <h1>{{ page.title | escape }}</h1>
-    {% if page.description %}<p class="page-subtitle">{{ page.description | escape }}</p>{% endif %}
   </header>
   <div class="prose">{{ content }}</div>
   <div class="post-end"><a class="text-link" href="{{ '/' | relative_url }}">← Back to articles</a></div>
