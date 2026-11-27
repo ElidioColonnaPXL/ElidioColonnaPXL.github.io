@@ -7,8 +7,8 @@ date: 2026-11-21
 category: "Incident analysis"
 tags: [Windows, Threat Hunting, Scheduled Tasks, Elastic, DFIR]
 permalink: /articles/hunting-scheduled-task-masquerading-in-windows/
-thumbnail: /assets/images/windows-task-masquerading/windows-task-masquerading-lineup-homepage.webp
-thumbnail_alt: "Windows service lineup with SQL Server wearing glasses and a moustache"
+thumbnail: /assets/images/windows-task-masquerading/windows-task-masquerading-after-hours.webp
+thumbnail_alt: "Windows task list with one entry highlighted in amber, beside a clock on a dimly lit desk"
 ---
 
 *The Guarded Kernel · Incident analysis · Research reviewed 21 November 2026*
