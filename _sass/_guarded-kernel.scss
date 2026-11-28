@@ -22,6 +22,45 @@ p { margin: 0 0 1.25rem; }
 #main.tgk-shell { clear: none; padding: 0; max-width: 1120px; }
 #main.tgk-shell::after { display: none; }
 .tgk-masthead { background: #fafbf8; border-bottom: 1px solid var(--line); }
+
+@media screen and (min-width: 1050px) {
+  :is(.layout--home, .layout--post, .field-notebook) {
+    --notebook-header-width: min(calc(100% - 5rem), 1120px);
+    --notebook-clear-width: var(--notebook-header-width);
+
+    .initial-content, .tgk-masthead {
+      position: relative;
+      isolation: isolate;
+
+      &::before, &::after {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        inset-block: 0;
+        width: calc((100% - var(--notebook-clear-width)) / 2 - 1.15rem);
+        background:
+          linear-gradient(90deg, #adc5b3 1px, transparent 1px) 0 0 / 120px 120px,
+          linear-gradient(#adc5b3 1px, transparent 1px) 0 0 / 120px 120px,
+          linear-gradient(90deg, #c7d8c9 1px, transparent 1px) 0 0 / 24px 24px,
+          linear-gradient(#c7d8c9 1px, transparent 1px) 0 0 / 24px 24px,
+          #edf3ec;
+        mask-image: linear-gradient(90deg, #000 10%, #000b 63%, transparent);
+        pointer-events: none;
+      }
+
+      &::before { left: 0; }
+      &::after { right: 0; transform: scaleX(-1); }
+    }
+
+    .tgk-masthead::before, .tgk-masthead::after { opacity: .6; }
+  }
+
+  .layout--home { --notebook-clear-width: min(86%, 80rem); }
+
+  // Protect the wider of the article and masthead columns as the viewport changes.
+  .layout--post { --notebook-clear-width: max(var(--notebook-header-width), min(75%, 90rem)); }
+}
+
 .site-header { display: flex; justify-content: space-between; align-items: center; gap: 2rem; min-height: 114px; }
 .brand { display: block; width: 390px; max-width: 62%; text-decoration: none; }
 .brand-logo { display: block; width: 100%; height: auto; filter: invert(1) hue-rotate(180deg) saturate(.6); }
@@ -66,7 +105,7 @@ p { margin: 0 0 1.25rem; }
 .eyebrow { color: var(--muted); font-size: .8rem; text-transform: uppercase; letter-spacing: .13em; margin-bottom: 1.7rem; }
 .intro h1 { font-size: clamp(3.3rem, 5.6vw, 6rem); font-weight: 700; letter-spacing: -.057em; line-height: 1.02; margin: 0; }
 .accent { color: var(--accent); }
-.intro-copy { color: var(--muted); font-size: clamp(1.05rem, 1.35vw, 1.25rem); line-height: 1.66; max-width: 44ch; margin: 1.65rem 0 1.25rem; }
+.intro-copy { color: var(--muted); font-size: clamp(1.05rem, 1.35vw, 1.25rem); line-height: 1.66; max-width: 44ch; margin: 1.65rem 0 1.25rem; text-wrap: pretty; }
 .author-link { font-weight: 650; text-decoration: underline; }
 .text-link { font-size: .86rem; font-weight: 600; text-decoration: none; border-bottom: 1px solid #90b393; padding-bottom: .2rem; }
 .text-link:hover { border-bottom-color: var(--accent); }
