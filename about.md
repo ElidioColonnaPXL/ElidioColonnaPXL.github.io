@@ -1,5 +1,6 @@
 ---
 layout: page
+classes: [field-notebook]
 title: "About me"
 seo_title: "Elidio Colonna · The Guarded Kernel"
 permalink: /about/
